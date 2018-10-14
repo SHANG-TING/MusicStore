@@ -11,12 +11,30 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace MusicStore.Models
 {
+    /// <summary>
+    /// 資料庫初始化資料類別
+    /// </summary>
     public static class SampleData
     {
+        /// <summary>
+        /// 預設圖片路徑
+        /// </summary>
         const string imgUrl = "~/Images/placeholder.png";
-        const string defaultAdminUserName = "DefaultAdminUserName";
-        const string defaultAdminPassword = "DefaultAdminPassword";
+        /// <summary>
+        /// 預設管理者帳號
+        /// </summary>
+        const string defaultAdminUserName = "hamaadm";
+        /// <summary>
+        /// 預設管理者密碼
+        /// </summary>
+        const string defaultAdminPassword = "hama1234";
 
+        /// <summary>
+        /// 初始化資料庫
+        /// </summary>
+        /// <param name="serviceProvider"></param>
+        /// <param name="createUsers"></param>
+        /// <returns></returns>
         public static async Task InitializeMusicStoreDatabaseAsync(IServiceProvider serviceProvider, bool createUsers = true)
         {
             using (var serviceScope = serviceProvider.CreateScope())
@@ -35,6 +53,11 @@ namespace MusicStore.Models
             }
         }
 
+        /// <summary>
+        /// 新增測試資料
+        /// </summary>
+        /// <param name="serviceProvider"></param>
+        /// <returns></returns>
         private static async Task InsertTestData(IServiceProvider serviceProvider)
         {
             var albums = GetAlbums(imgUrl, Genres, Artists);
